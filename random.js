@@ -26,20 +26,22 @@ window.onload = function () {
     }
 
     let file = document.getElementsByClassName('menu')[0];
-    let uploadStatus = document.getElementsByClassName('upload_status')[0];
+    let file_name = document.getElementsByClassName('file_name')[0];
     let menu = '';
     let menu_object = window.localStorage;
     let menu_array = [];
-    let uploadStatusMark = 'N';
 
-    uploadStatus.innerHTML = uploadStatusMark;
+    file_name.innerHTML = '尚未上传';
 
     file.addEventListener("change", function () {
+        if (file.files[0].name) {
+            file_name.innerHTML = file.files[0].name;
+
+        }
 
         let reader = new FileReader();
         reader.addEventListener('load', function () {
             menu = this.result;
-            uploadStatus.innerHTML = 'Y';
 
         });
         reader.readAsText(this.files[0]);
