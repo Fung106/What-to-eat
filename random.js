@@ -4,8 +4,6 @@ window.onload = function () {
         let showMenu = document.getElementsByClassName('show_menu')[0];
         showMenu.innerHTML = '';
 
-        console.log(menu_object);
-
         if (menu_object.length !== 0) {
             let menu = JSON.parse(menu_object.getItem('Menu'));
 
