@@ -61,7 +61,8 @@ window.onload = function () {
     uploadButton.addEventListener('click', function () {
         menu_object.clear();
         document.getElementsByClassName('what_to_eat')[0].value = '';
-        menu_array = menu.split('\r\n');
+        menu = menu.replace(/\r\n/g, '\n');
+        menu_array = menu.split(/\n/);
 
         for (let index = 0; index < menu_array.length; index++) {
             if (!menu_array[index]) {
