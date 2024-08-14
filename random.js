@@ -1,7 +1,7 @@
 window.onload = function () {
     let day = new Date().getDay();
     let currentDay = '';
-    day = 0;
+    //day = 0;
 
     if (day > 0 && day < 6) {
         currentDay = 'workday';
