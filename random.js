@@ -4,20 +4,24 @@ window.onload = function () {
         let showMenu = document.getElementsByClassName('show_menu')[0];
         showMenu.innerHTML = '';
 
-        let menu = JSON.parse(menu_object.getItem('Menu'));
+        console.log(menu_object);
+
+        if (menu_object.length !== 0) {
+            let menu = JSON.parse(menu_object.getItem('Menu'));
 
 
-        for (let index = 0; index < menu.length; index++) {
-            if (!menu[index]) {
-                menu.splice(index, 1);
+            for (let index = 0; index < menu.length; index++) {
+                if (!menu[index]) {
+                    menu.splice(index, 1);
+                }
+
             }
 
-        }
+            if (menu.length !== 0) {
+                for (let index = 0; index < menu.length; index++) {
+                    showMenu.innerHTML += menu[index] + '<br>';
 
-        if (menu.length !== 0) {
-            for (let index = 0; index < menu.length; index++) {
-                showMenu.innerHTML += menu[index] + '<br>';
-
+                }
             }
         }
 
@@ -72,19 +76,23 @@ window.onload = function () {
     });
 
     chooseButton.addEventListener('click', function () {
-        let Menu = JSON.parse(menu_object.getItem('Menu'));
-        max = Menu.length;
-        if (!max) {
-            document.getElementsByClassName('what_to_eat')[0].value = '没东西吃啦';
-        } else {
-            rand = Math.random() * (max - min) + min;
-            key = Math.floor(rand);//脚标
-            result = Menu[key];
-            document.getElementsByClassName('what_to_eat')[0].value = result;
-            Menu.splice(key, 1);
-            menu_object.setItem('Menu', JSON.stringify(Menu));
-            showMenu();
-        }
 
+        if (menu_object.length !== 0) {
+            let Menu = JSON.parse(menu_object.getItem('Menu'));
+            max = Menu.length;
+            if (!max) {
+                document.getElementsByClassName('what_to_eat')[0].value = '没东西吃啦';
+            } else {
+                rand = Math.random() * (max - min) + min;
+                key = Math.floor(rand);//脚标
+                result = Menu[key];
+                document.getElementsByClassName('what_to_eat')[0].value = result;
+                Menu.splice(key, 1);
+                menu_object.setItem('Menu', JSON.stringify(Menu));
+                showMenu();
+            }
+        } else {
+            document.getElementsByClassName('what_to_eat')[0].value = '没东西吃啦';
+        }
     });
 }
